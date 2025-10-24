@@ -26,7 +26,7 @@ class ProductController extends Controller
         $product = Product::create($validated);
 
         return redirect()
-                ->route('products.show', [$product]) // vai ['product' => $product]
+                ->route('products.show', compact($product)) // vai ['product' => $product]
                 ->with('message', "Product created successfully");
     }
 
@@ -47,9 +47,9 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product) {
         $validated = $request->validate([
-            'name' => 'required|unique:products|max:255',
+            'name' => 'required|max:255',
             'quantity' => 'required|integer',
-            'description' => 'required',
+            'content' => 'required',
         ]);
 
         $product->update($validated);

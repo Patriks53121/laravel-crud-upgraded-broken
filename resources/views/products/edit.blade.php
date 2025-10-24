@@ -13,13 +13,13 @@
         </div>
     @endif
 
-    <form action="{{ route('products.update') }}" method="post">
+    <form action="{{ route('products.update', [$product]) }}" method="post">
         @csrf
         @method('PUT')
 
         <input type="text" name="name" value="{{ $product->name }}">
         <input type="number" name="quantity" value="{{ $product->quantity }}">
-        <textarea name="content">{{ $product->description }}</textarea>
+        <textarea name="content" value="{{$product->content}}">{{$product->content}}</textarea>
         <input type="submit" value="Submit">
     </form>
 </x-layout>
